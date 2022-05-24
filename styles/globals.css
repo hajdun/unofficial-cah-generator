@@ -14,3 +14,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+h2 {
+  text-align: center;
+}
+
+.uploadOptionColumns {
+  display: flex;
+  flex-direction: row;
+}
+
+.uploadOption {
+  height: 400px;
+  width: 400px;
+  border: 3px solid rgb(170, 170, 170);
+  margin-right: 3px;
+}
