@@ -6,7 +6,6 @@ import { doc, setDoc } from "firebase/firestore";
 export const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const COLLECTION_NAME="cards"
-const cardsCol = collection(db, COLLECTION_NAME);
 
 // Get a list of cards from your database
 export const getCards = async () => {
@@ -18,7 +17,7 @@ export const getCards = async () => {
 
  // Push Function
  export const addCard = (text: string, isQuestion: boolean, language="hu_HU", isFunny=true ) => {
-  setDoc(doc(db, 'unofficial-cah-generator', 'cards'),{
+  setDoc(doc(db, 'unofficial-cah-generator', COLLECTION_NAME),{
         text,
         isQuestion,
         language,
