@@ -1,24 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect } from "react";
 import styles from "./FileInput.module.css";
-import { getCards } from '../../api/firebase';
+import { getCards, addCard } from "../../api/firebase";
 
 interface ICard {
-   text: string;
-   isFunny?: boolean;
-   isQuestion: boolean;
-   language: string;
+  text: string;
+  isFunny?: boolean;
+  isQuestion: boolean;
+  language: string;
 }
 
 const FileInput: React.FC = () => {
-    
-    useEffect(()=>{
-        getCards().then(cards=>{
-            console.log(cards)
-        })
-    }, [])
+  useEffect(() => {
+    getCards().then((cards) => {
+      console.log(cards);
+    });
+  }, []);
+
+  const addFixCard = () => {
+    addCard("What is needed for the perfect mashed potato?", true);
+  };
 
   return (
     <div>
+      <button onClick={addFixCard}>Add card</button>
       <div>Upload file</div>
       <div>
         <input type="file" />
