@@ -1,0 +1,10 @@
+.uploadOptionColumns {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+    .uploadOptionColumns {
+        flex-direction: column;
+    }
+}

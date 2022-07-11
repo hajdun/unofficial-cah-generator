@@ -1,6 +1,7 @@
 import React from "react";
 import FileInput from "../atoms/FileInput";
 import QuestionorAnswerForm from "../molecules/QuestionOrAnswerForm";
+import styles from "./UploadForm.module.css"
 
 const UploadForm: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const UploadForm: React.FC = () => {
         <div>
             <h2>Upload your stuff</h2>
         </div>
-      <div className="uploadOptionColumns">
+      <div className={styles.uploadOptionColumns}>
         <div className="uploadOption">
           <FileInput />
         </div>
