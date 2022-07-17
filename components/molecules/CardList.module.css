@@ -1,24 +1,31 @@
 .cardList {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.card {
-    width: 200px;
+.cardListActions {
+    max-width: 800px;
     height: 150px;
-    overflow: auto;
-    word-wrap: break-word;
-    border: 1px solid black;
-    padding: 5px;
-    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.question {
-    background-color: black;
+.button {
     color: white;
-    border: 1px solid white;
+    background-color: black;
+    height: 40px;
+    border-radius: 5%;
 }
 
-.answer {
+.button:hover {
+    background-color: white;
     color: black;
+}
+
+@media screen and (max-width: 800px) {
+    .cardListActions {
+        flex-direction: column;
+    }  
 }
