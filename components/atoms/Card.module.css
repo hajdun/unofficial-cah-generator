@@ -1,0 +1,23 @@
+.card {
+    width: 220px;
+    height: 150px;
+    overflow: auto;
+    word-wrap: break-word;
+    border: 1px solid black;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.question {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.answer {
+    color: black;
+}
+
+.extraStyle {
+    font-size: 12px;
+}

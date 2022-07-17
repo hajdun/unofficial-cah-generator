@@ -1,63 +1,115 @@
-import React, { useEffect } from "react";
-import styles from "./FileInput.module.css";
-import { getCards, addCard } from "../../api/firebase";
+import React, { useState } from "react";
+import Papa from "papaparse";
+import { addCard } from "../../api/firebase";
 
-interface ICard {
-  text: string;
-  isFunny?: boolean;
-  isQuestion: boolean;
-  language: string;
-}
+const FileInput = () => {
+    // State to store parsed data
+    const [parsedData, setParsedData] = useState([]);
 
-const FileInput: React.FC = () => {
-  useEffect(() => {
-    getCards().then((cards) => {
-      console.log(cards);
-    });
-  }, []);
+    //State to store table Column name
+    const [language, setLanguage] = useState([]);
 
-  const addFixCard = () => {
-    addCard("What is needed for the perfect mashed potato?", true);
-  };
+    //State to store the values
+    const [values, setValues] = useState([]);
+    const [file, setFile] = useState(null);
 
-  return (
-    <div>
-      <button onClick={addFixCard}>Add card</button>
-      <div>Upload file</div>
-      <div>
-        <input type="file" />
-      </div>
-      <div>Expected format: csv (comma separated)</div>
-      <div>No header needed</div>
-      <div>Rows go like this:</div>
-      <table className={styles.exampleTable}>
-        <thead></thead>
-        <tbody>
-          <tr>
-            <td>en_US</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>"What is needed for the perfect mashed potato?"</td>
-            <td>true</td>
-          </tr>
-          <tr>
-            <td>"Gay lobby"</td>
-            <td>false</td>
-          </tr>
-        </tbody>
-      </table>
-      <div>First row: language ISO code</div>
-      <div>Question format:</div>
-      <div>CARD TEXT, true</div>
-      <div>Example:</div>
-      <div>"What is needed for the perfect mashed potato?", true</div>
-      <div>Answer format:</div>
-      <div>CARD TEXT, false</div>
-      <div>Example:</div>
-      <div>"Gay lobby", false</div>
-    </div>
-  );
+
+
+    const uploadCards = () => {
+        const cardArray = values.map(val => {
+            return { 
+                text: val[0],
+                isQuestion: val[1] as boolean,
+                language: language[0],
+                isFunny: true
+            }
+        })
+        console.log(cardArray)
+
+        for(let i=0; i<cardArray.length; i++){
+            const currentCard=cardArray[i]
+            addCard(currentCard);
+        }
+    };
+
+    const changeHandler = (event) => {
+        setFile(event.target.files[0]);
+    };
+
+    const handleOnSubmit = (event) => {
+        event.preventDefault();
+        console.log(file);
+        // Passing file data (event.target.files[0]) to parse using Papa.parse
+        Papa.parse(file, {
+            header: true,
+            skipEmptyLines: true,
+            encoding: "UTF-8",
+            complete: (results) => {
+                const rowsArray = [];
+                const valuesArray = [];
+
+                // Iterating data to get column name and their values
+                results.data.map((d) => {
+                    rowsArray.push(Object.keys(d));
+                    valuesArray.push(Object.values(d));
+                });
+
+                // Parsed Data Response in array format
+                setParsedData(results.data);
+
+                // Filtered Column Names
+                setLanguage(rowsArray[0]);
+
+                // Filtered Values
+                setValues(valuesArray);
+            },
+        });
+    };
+
+    return (
+        <div style={{ textAlign: "center" }}>
+            <h3>Upload file</h3>
+            <form>
+                <input
+                    type={"file"}
+                    id={"csvFileInput"}
+                    accept={".csv"}
+                    onChange={changeHandler}
+                />
+
+                <button onClick={handleOnSubmit}>
+                    Preview
+                </button>
+            </form>
+
+            <br />
+
+            {values && <table>
+                <thead>
+                    <th>Language</th>
+                    <th>Text</th>
+                    <th>Is question</th>
+                </thead>
+                <tbody>
+                    {values.map((value, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>
+                                    {language.map((rows, index) => {
+                                        return <td key={index}>{rows}</td>;
+                                    })}
+                                </td>
+                                {value && value.map((val, i) => {
+                                    return <td key={i}>{val}</td>;
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>}
+            <button onClick={uploadCards}>Upload</button>
+        </div>
+    );
 };
 
 export default FileInput;

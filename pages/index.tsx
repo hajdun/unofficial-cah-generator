@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
       <h1 className={styles.title}>
-      Unofficial CAH generator
+         Unofficial CAH generator
         </h1>
         <div><UploadForm/></div>
        

@@ -1,12 +1,12 @@
 import * as firebase from "firebase/app";
-import  { firebaseConfig } from "../firebaseConfig";
-import { getFirestore, collection, getDocs, doc, setDoc} from "firebase/firestore";
+import { firebaseConfig } from "../firebaseConfig";
+import { getFirestore, collection, getDocs, doc, setDoc } from "firebase/firestore";
+import { ICard } from "../types/Card";
 
 export const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const COLLECTION_NAME="cards"
-const cardsCol=collection(db, COLLECTION_NAME)
-
+const COLLECTION_NAME = "cards"
+const cardsCol = collection(db, COLLECTION_NAME)
 
 // Get a list of cards from your database
 export const getCards = async () => {
@@ -15,14 +15,7 @@ export const getCards = async () => {
   return cardList;
 };
 
- // Push Function
- export const addCard = (text: string, isQuestion: boolean, language="hu_HU", isFunny=true ) => {
-  setDoc(doc(cardsCol),{
-        text,
-        isQuestion,
-        language,
-        isFunny
-    }).then(()=>{
-      return getCards()
-    })
-  }
+// Push Function
+export const addCard = (card: ICard) => {
+  setDoc(doc(cardsCol), card)
+}

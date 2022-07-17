@@ -1,5 +1,6 @@
 import React from "react";
-import FileInput from "../atoms/FileInput";
+import FileInput from "../atoms/FileInputInfo";
+import FileInputWithInfo from "../molecules/FileInputWithInfo";
 import QuestionorAnswerForm from "../molecules/QuestionOrAnswerForm";
 import styles from "./UploadForm.module.css"
 
@@ -11,7 +12,7 @@ const UploadForm: React.FC = () => {
         </div>
       <div className={styles.uploadOptionColumns}>
         <div className="uploadOption">
-          <FileInput />
+          <FileInputWithInfo />
         </div>
         <div className="uploadOption">
           <QuestionorAnswerForm />
