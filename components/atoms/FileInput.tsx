@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Papa from 'papaparse'
 import { addCard } from '../../api/firebase'
 import DragDropFileInput from './DragDropFileInput'
+import clsx from 'clsx'
+import './FileInput.module.css'
 
 const FileInput = () => {
   // State to store parsed data
@@ -37,7 +39,6 @@ const FileInput = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault()
-    console.log(file)
     // Passing file data (event.target.files[0]) to parse using Papa.parse
     Papa.parse(file, {
       header: true,
@@ -70,8 +71,7 @@ const FileInput = () => {
             <div>
             <h3>Upload file</h3>
             </div>
-
-<DragDropFileInput/>
+            <DragDropFileInput/>
 
             <form>
                 <input
@@ -86,16 +86,14 @@ const FileInput = () => {
                 </button>
             </form>
 
-            <br />
-
-            {values && <table>
+          <table className={clsx({ hideTable: values.length === 0 })}>
                 <thead>
                     <th>Language</th>
                     <th>Text</th>
                     <th>Is question</th>
                 </thead>
                 <tbody>
-                    {values.map((value, index) => {
+                    {values.map((value: string[], index) => {
                       return (
                             <tr key={index}>
                                 <td>
@@ -103,14 +101,14 @@ const FileInput = () => {
                                       return <td key={index}>{rows}</td>
                                     })}
                                 </td>
-                                {value && value.map((val, i) => {
+                                {value.map((val: string, i: number) => {
                                   return <td key={i}>{val}</td>
                                 })}
                             </tr>
                       )
                     })}
                 </tbody>
-            </table>}
+            </table>
             <button onClick={uploadCards}>Upload</button>
         </div>
   )

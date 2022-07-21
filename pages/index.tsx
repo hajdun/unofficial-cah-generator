@@ -50,14 +50,10 @@ const Home: NextPage = () => {
             </Tabs>
           </Box>
           <TabPanel value={currentTabIndex} index={0}>
-
-            <div><UploadForm /></div>
-
+              <UploadForm />
           </TabPanel>
           <TabPanel value={currentTabIndex} index={1}>
-            <div className="uploadOption">
               <QuestionorAnswerForm />
-            </div>
           </TabPanel>
           <TabPanel value={currentTabIndex} index={2}>
             Item Three

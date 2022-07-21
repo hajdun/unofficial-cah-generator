@@ -10,51 +10,48 @@ const FileInputInfo: React.FC = () => {
       </div>
       <div>Expected format: csv (comma separated)</div>
       <div>Encoding: UTF-8 (Excel cannot)</div>
-      <h4>
-        Example csv file looks
-      </h4>
+      <div>
+        <h4>
+          Example csv file looks
+        </h4>  </div>
       <table className={styles.exampleTable}>
-        <thead></thead>
-        <tbody>
-          <tr>
+        <tr>
           <td>
-              <Tooltip title={`No header needed
+            <Tooltip title={`No header needed\n
             First row: card language ISO code`}>
-                <div>
-                 en_US
-                </div>
-              </Tooltip>
-            </td>
-            <td></td>
-          </tr>
-          <tr className={styles.question}>
-            <td>
-              <Tooltip title={`Question format:
-            CARD TEXT, true
+              <div>
+                en_US
+              </div>
+            </Tooltip>
+          </td>
+          <td></td>
+        </tr>
+        <tr className={styles.question}>
+          <td>
+            <Tooltip title={`Question format:\n
+            CARD TEXT, true\n
             (second column is always true for questions)`}>
-                <div>
-                  {'"What is needed for the perfect mashed potato?"'}
-                </div>
-              </Tooltip>
-            </td>
+              <div>
+                {'What is needed for the perfect mashed potato?'}
+              </div>
+            </Tooltip>
+          </td>
 
-            <td>true</td>
-          </tr>
-          <tr>
-            <td>
-              <Tooltip title={`Answer format:
-            CARD TEXT, false
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>
+            <Tooltip title={`Answer format:\n
+            CARD TEXT, false\n
             (second column is always false for answers)`}>
-                <div>
-                  {'"Gay lobby"'}
-                </div>
-              </Tooltip>
-            </td>
-            <td>false</td>
-          </tr>
-        </tbody>
+              <div>
+                {'Gay lobby'}
+              </div>
+            </Tooltip>
+          </td>
+          <td>false</td>
+        </tr>
       </table>
-
     </div>
   )
 }
