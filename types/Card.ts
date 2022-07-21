@@ -5,4 +5,3 @@ export interface ICard {
     isQuestion: string;
     language: string;
 }
-  

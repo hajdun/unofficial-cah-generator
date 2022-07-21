@@ -1,9 +1,8 @@
-import React from "react";
-import styles from "./FileInputInfo.module.css";
-import Tooltip from '@mui/material/Tooltip';
+import React from 'react'
+import styles from './FileInputInfo.module.css'
+import Tooltip from '@mui/material/Tooltip'
 
 const FileInputInfo: React.FC = () => {
-
   return (
     <div>
       <div>
@@ -34,11 +33,10 @@ const FileInputInfo: React.FC = () => {
             CARD TEXT, true
             (second column is always true for questions)`}>
                 <div>
-                  {`"What is needed for the perfect mashed potato?"`}
+                  {'"What is needed for the perfect mashed potato?"'}
                 </div>
               </Tooltip>
             </td>
-
 
             <td>true</td>
           </tr>
@@ -48,7 +46,7 @@ const FileInputInfo: React.FC = () => {
             CARD TEXT, false
             (second column is always false for answers)`}>
                 <div>
-                  {`"Gay lobby"`}
+                  {'"Gay lobby"'}
                 </div>
               </Tooltip>
             </td>
@@ -58,7 +56,7 @@ const FileInputInfo: React.FC = () => {
       </table>
 
     </div>
-  );
-};
+  )
+}
 
-export default FileInputInfo;
+export default FileInputInfo

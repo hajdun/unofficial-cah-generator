@@ -1,27 +1,27 @@
-import { useState } from 'react';
+import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import UploadForm from '../components/organisms/UploadForm'
 import QuestionorAnswerForm from '../components/molecules/QuestionOrAnswerForm'
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Box from '@mui/material/Box'
 import TabPanel from '../components/atoms/TabPanel'
-import Link from 'next/link';
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   const [currentTabIndex, setCurrentTabIndex] = useState(0)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setCurrentTabIndex(newValue);
-  };
+    setCurrentTabIndex(newValue)
+  }
 
   const a11yProps = (index: number) => {
     return {
       id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
+      'aria-controls': `simple-tabpanel-${index}`
+    }
   }
 
   return (
@@ -63,7 +63,6 @@ const Home: NextPage = () => {
             Item Three
           </TabPanel>
         </Box>
-
 
       </main>
       <footer className={styles.footer}>

@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./UploadForm.module.css"
-import FileInput from "../atoms/FileInput"
-import FileInputInfo from "../atoms/FileInputInfo"
+import React from 'react'
+import styles from './UploadForm.module.css'
+import FileInput from '../atoms/FileInput'
+import FileInputInfo from '../atoms/FileInputInfo'
 
 const UploadForm: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const UploadForm: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UploadForm;
+export default UploadForm
