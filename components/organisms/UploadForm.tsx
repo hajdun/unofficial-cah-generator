@@ -1,21 +1,17 @@
 import React from "react";
-import FileInput from "../atoms/FileInputInfo";
-import FileInputWithInfo from "../molecules/FileInputWithInfo";
-import QuestionorAnswerForm from "../molecules/QuestionOrAnswerForm";
 import styles from "./UploadForm.module.css"
+import FileInput from "../atoms/FileInput"
+import FileInputInfo from "../atoms/FileInputInfo"
 
 const UploadForm: React.FC = () => {
   return (
     <div>
-        <div>
-            <h2>Upload your stuff</h2>
-        </div>
       <div className={styles.uploadOptionColumns}>
         <div className="uploadOption">
-          <FileInputWithInfo />
+          <FileInput />
         </div>
         <div className="uploadOption">
-          <QuestionorAnswerForm />
+        <FileInputInfo/>
         </div>
       </div>
     </div>
