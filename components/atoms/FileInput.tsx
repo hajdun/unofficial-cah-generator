@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Papa from 'papaparse'
 import { addCard } from '../../api/firebase'
+import DragDropFileInput from './DragDropFileInput'
 
 const FileInput = () => {
   // State to store parsed data
@@ -69,6 +70,9 @@ const FileInput = () => {
             <div>
             <h3>Upload file</h3>
             </div>
+
+<DragDropFileInput/>
+
             <form>
                 <input
                     type={'file'}
