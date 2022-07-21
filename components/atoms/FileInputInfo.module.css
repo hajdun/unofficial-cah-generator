@@ -1,3 +1,8 @@
 .exampleTable td {
     border: 1px solid black;
 }
+
+.question {
+    background-color: black;
+    color: white;
+}

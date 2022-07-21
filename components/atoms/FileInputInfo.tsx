@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FileInputInfo.module.css";
-
+import Tooltip from '@mui/material/Tooltip';
 
 const FileInputInfo: React.FC = () => {
 
@@ -11,34 +11,52 @@ const FileInputInfo: React.FC = () => {
       </div>
       <div>Expected format: csv (comma separated)</div>
       <div>Encoding: UTF-8 (Excel cannot)</div>
-      <div>No header needed</div>
-      <div>Rows go like this:</div>
+      <h4>
+        Example csv file looks
+      </h4>
       <table className={styles.exampleTable}>
         <thead></thead>
         <tbody>
           <tr>
-            <td>en_US</td>
+          <td>
+              <Tooltip title={`No header needed
+            First row: card language ISO code`}>
+                <div>
+                 en_US
+                </div>
+              </Tooltip>
+            </td>
             <td></td>
           </tr>
-          <tr>
-            <td>{`"What is needed for the perfect mashed potato?""`}</td>
+          <tr className={styles.question}>
+            <td>
+              <Tooltip title={`Question format:
+            CARD TEXT, true
+            (second column is always true for questions)`}>
+                <div>
+                  {`"What is needed for the perfect mashed potato?"`}
+                </div>
+              </Tooltip>
+            </td>
+
+
             <td>true</td>
           </tr>
           <tr>
-            <td>{`"Gay lobby"`}</td>
+            <td>
+              <Tooltip title={`Answer format:
+            CARD TEXT, false
+            (second column is always false for answers)`}>
+                <div>
+                  {`"Gay lobby"`}
+                </div>
+              </Tooltip>
+            </td>
             <td>false</td>
           </tr>
         </tbody>
       </table>
-      <div>First row: language ISO code</div>
-      <div>Question format:</div>
-      <div>CARD TEXT, true</div>
-      <div>Example:</div>
-      <div>{`"What is needed for the perfect mashed potato?", true`}</div>
-      <div>Answer format:</div>
-      <div>CARD TEXT, false</div>
-      <div>Example:</div>
-      <div>{`"Gay lobby", false`}</div>
+
     </div>
   );
 };
