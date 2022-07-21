@@ -44,7 +44,7 @@ const Home: NextPage = () => {
         <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={currentTabIndex} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Upload cards from file" {...a11yProps(0)} />
+              <Tab label="Upload cards from file" {...a11yProps(0)} variant={'scrollable'} />
               <Tab label="Add cards in form" {...a11yProps(1)} />
               <Tab label="Manage list" {...a11yProps(2)} />
             </Tabs>

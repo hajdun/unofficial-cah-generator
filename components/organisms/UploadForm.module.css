@@ -1,8 +1,12 @@
-.uploadOptionColumns {
+.MuiBox-root {
+    margin-bottom: 40px;
+    overflow-y: auto;
+}
+
+.uploadContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    overflow-y: auto;
 }
 
 .uploadOption {

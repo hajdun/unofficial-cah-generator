@@ -12,8 +12,11 @@
 }
 
 .footer {
+  left: 0;
+  bottom: 0;
+  height: 30px;
   width: 100%;
-  padding: 2rem 0;
+  padding-bottom: 10px;
   border-top: 1px solid #eaeaea;
   position: fixed;
   bottom: 0;

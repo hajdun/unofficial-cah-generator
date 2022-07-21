@@ -5,7 +5,7 @@ import FileInputInfo from '../atoms/FileInputInfo'
 
 const UploadForm: React.FC = () => {
   return (
-      <div className={styles.uploadOptionColumns}>
+      <div className={styles.uploadContainer}>
         <div className={styles.uploadOption}>
           <FileInput />
         </div>
