@@ -13,8 +13,6 @@ const FileInput = () => {
     const [values, setValues] = useState([]);
     const [file, setFile] = useState(null);
 
-
-
     const uploadCards = () => {
         const cardArray = values.map(val => {
             return { 
@@ -67,8 +65,10 @@ const FileInput = () => {
     };
 
     return (
-        <div style={{ textAlign: "center" }}>
+        <div>
+            <div>
             <h3>Upload file</h3>
+            </div>
             <form>
                 <input
                     type={"file"}

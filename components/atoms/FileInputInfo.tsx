@@ -1,11 +1,14 @@
 import React from "react";
-import styles from "./FileInput.module.css";
+import styles from "./FileInputInfo.module.css";
 
 
 const FileInputInfo: React.FC = () => {
 
   return (
     <div>
+      <div>
+        <h3>File upload guide</h3>
+      </div>
       <div>Expected format: csv (comma separated)</div>
       <div>Encoding: UTF-8 (Excel cannot)</div>
       <div>No header needed</div>

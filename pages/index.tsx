@@ -67,7 +67,9 @@ const Home: NextPage = () => {
 
       </main>
       <footer className={styles.footer}>
+        <div className={styles.company}>
         Recontent Kft
+        </div>
       </footer>
     </div>
   )
