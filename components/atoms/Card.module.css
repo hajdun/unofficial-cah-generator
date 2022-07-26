@@ -33,6 +33,7 @@
 }
 
 .logoContainer {
+    border: none;
     display: flex;
     vertical-align: center;
     justify-content: center;
