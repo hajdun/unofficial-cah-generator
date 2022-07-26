@@ -2,6 +2,7 @@ import { uuidv4 } from '@firebase/util'
 import React, { useEffect, useState } from 'react'
 import { getCards } from '../../api/firebase'
 import { ICard } from '../../types/Card'
+import Button from '../atoms/Button'
 import Card from '../atoms/Card'
 import styles from './CardList.module.css'
 
@@ -57,14 +58,14 @@ const CardList: React.FC = () => {
         <div>
             <div className={styles.cardListActions}>
                 <div>
-                    <button className={styles.button} onClick={sortOutQuestionsAnswers}>Separate questions from answers</button>
+                  <Button onClick={sortOutQuestionsAnswers} text="Separate questions from answers"></Button>
                 </div>
                 <div>
-                    <button className={styles.button} onClick={sortAlpha}>Sort alphabetically</button>
+                <Button onClick={sortAlpha} text="Sort alphabetically"></Button>
                 </div>
                 <div>
-                    <button className={styles.button} onClick={hideUnfunny}>Hide unfunny</button>
-                </div>
+                <Button onClick={hideUnfunny} text="Hide unfunny"></Button>
+            </div>
             </div>
             <div className={styles.cardList}>
                 {cards.map(card => {

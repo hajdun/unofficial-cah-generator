@@ -46,7 +46,6 @@ const Home: NextPage = () => {
             <Tabs value={currentTabIndex} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="Upload cards from file" {...a11yProps(0)} variant={'scrollable'} />
               <Tab label="Add cards in form" {...a11yProps(1)} />
-              <Tab label="Manage list" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <TabPanel value={currentTabIndex} index={0}>
@@ -54,9 +53,6 @@ const Home: NextPage = () => {
           </TabPanel>
           <TabPanel value={currentTabIndex} index={1}>
               <QuestionorAnswerForm />
-          </TabPanel>
-          <TabPanel value={currentTabIndex} index={2}>
-            Item Three
           </TabPanel>
         </Box>
 
