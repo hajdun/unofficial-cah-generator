@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import styles from './Card.module.css'
 import { ICard } from '../../types/Card'
 
-const Card: React.FC<ICard> = ({ card }) => {
+interface ICardProps {
+  card: ICard
+}
+
+const Card: React.FC<ICardProps> = ({ card }) => {
   const cardRef = React.createRef<HTMLDivElement>()
 
   const [extraStyle, setExtraStyle] = useState(false)
