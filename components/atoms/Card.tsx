@@ -3,6 +3,8 @@ import styles from './Card.module.css'
 import { ICard } from '../../types/Card'
 import Button from './Button'
 import { deleteCard } from '../../api/firebase'
+import Logo from '../../public/logo.svg'
+import Image from 'next/image'
 
 interface ICardProps {
   card: ICard,
@@ -34,7 +36,12 @@ const Card: React.FC<ICardProps> = ({ card, isEdit = false }) => {
       ref={cardRef}
       className={`${styles.card} ${card.isQuestion === 'true' ? styles.question : styles.answer} ${extraStyle ? styles.extraStyle : ''}`}
     >
-      {card.text}
+      <div>
+        {card.text}</div>
+      <div className={styles.logoContainer}>
+        <Image src={Logo} alt="Logo" width='20px' height='20px' />
+        Cards Against Humanity
+      </div>
     </div>
     <div>
       {isEdit && <div className={styles.buttonContainer}>
