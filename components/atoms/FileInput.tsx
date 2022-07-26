@@ -4,6 +4,7 @@ import { addCard } from '../../api/firebase'
 import DragDropFileInput from './DragDropFileInput'
 import clsx from 'clsx'
 import './FileInput.module.css'
+import Button from './Button'
 
 const FileInput = () => {
   // State to store parsed data
@@ -80,10 +81,7 @@ const FileInput = () => {
                     accept={'.csv'}
                     onChange={changeHandler}
                 />
-
-                <button onClick={handleOnSubmit}>
-                    Preview
-                </button>
+                <Button text="Preview" onClick={handleOnSubmit}></Button>
             </form>
 
           <table className={clsx({ hideTable: values.length === 0 })}>
@@ -109,7 +107,7 @@ const FileInput = () => {
                     })}
                 </tbody>
             </table>
-            <button onClick={uploadCards}>Upload</button>
+            <Button text="Upload" onClick={uploadCards}></Button>
         </div>
   )
 }
