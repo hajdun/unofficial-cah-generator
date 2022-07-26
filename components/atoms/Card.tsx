@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Card.module.css'
 import { ICard } from '../../types/Card'
+import Button from './Button'
+import { deleteCard } from '../../api/firebase'
 
 interface ICardProps {
-  card: ICard
+  card: ICard,
+  isEdit?: boolean
 }
 
-const Card: React.FC<ICardProps> = ({ card }) => {
+const Card: React.FC<ICardProps> = ({ card, isEdit = false }) => {
   const cardRef = React.createRef<HTMLDivElement>()
 
   const [extraStyle, setExtraStyle] = useState(false)
@@ -21,12 +24,24 @@ const Card: React.FC<ICardProps> = ({ card }) => {
     }
   }, [])
 
-  return <div
-        ref={cardRef}
-        className={`${styles.card} ${card.isQuestion === 'true' ? styles.question : styles.answer} ${extraStyle ? styles.extraStyle : ''}`}
+  const deleteCardClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const id = event.currentTarget.getAttribute('id')
+    if (id) { deleteCard(id) }
+  }
+
+  return <div className={styles.container}>
+    <div
+      ref={cardRef}
+      className={`${styles.card} ${card.isQuestion === 'true' ? styles.question : styles.answer} ${extraStyle ? styles.extraStyle : ''}`}
     >
-        {card.text}
+      {card.text}
     </div>
+    <div>
+      {isEdit && <div className={styles.buttonContainer}>
+        <Button id={card.id && card.id} text="Delete" onClick={deleteCardClick}></Button>
+      </div>}
+    </div>
+  </div>
 }
 
 export default Card

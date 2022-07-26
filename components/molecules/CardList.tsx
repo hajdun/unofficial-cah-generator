@@ -70,7 +70,7 @@ const CardList: React.FC = () => {
             <div className={styles.cardList}>
                 {cards.map(card => {
                   if (isUnfunnyHidden && card.isFunny === false) return ''
-                  return <Card key={uuidv4()} card={card} />
+                  return <Card key={uuidv4()} card={card} isEdit={true}/>
                 })}
             </div>
         </div>

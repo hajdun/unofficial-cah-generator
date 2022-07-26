@@ -1,3 +1,9 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+}
+
 .card {
     width: 220px;
     height: 150px;
@@ -6,6 +12,7 @@
     border: 1px solid black;
     padding: 5px;
     font-weight: bold;
+    margin-right: 10px;
 }
 
 .question {
@@ -20,4 +27,8 @@
 
 .extraStyle {
     font-size: 12px;
+}
+
+.buttonContainer{
+    width: 220px;
 }

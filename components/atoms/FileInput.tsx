@@ -26,7 +26,6 @@ const FileInput = () => {
         isFunny: true
       }
     })
-    console.log(cardArray)
 
     for (let i = 0; i < cardArray.length; i++) {
       const currentCard = cardArray[i]
