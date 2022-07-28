@@ -1,0 +1,11 @@
+.container {
+  margin: 25mm 25mm 25mm 25mm;
+}
+
+@media print {  
+    .container {
+        display: inline;
+        margin-bottom: 25mm;
+        margin-top: 15mm;
+    }
+  }

@@ -40,7 +40,7 @@ const Card: React.FC<ICardProps> = ({ card, isEdit = false }) => {
       <div
        className={`${styles.logoContainer} ${card.isQuestion === 'true' ? styles.question : styles.answer}`}
      >
-        <Logo width='20px' height='20px' color={'currentColor'}/>
+        <Logo width='15px' height='15px' color={'currentColor'}/>
         Cards Against Humanity
       </div>
     </div>
