@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './UploadForm.module.css'
-import FileInput from '../atoms/FileInput'
+import FileInput from '../molecules/FileInput'
 import FileInputInfo from '../atoms/FileInputInfo'
 
 const UploadForm: React.FC = () => {

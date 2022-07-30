@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx" 
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
     "@react-firebase/database": "^0.2.10",
     "firebase": "^9.9.0",

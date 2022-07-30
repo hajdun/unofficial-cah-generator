@@ -15,6 +15,8 @@ const FileInputInfo: React.FC = () => {
           Example csv file looks
         </h4>  </div>
       <table className={styles.exampleTable}>
+        <thead style={{ visibility: 'hidden' }}></thead>
+        <tbody>
         <tr>
           <td>
             <Tooltip title={`No header needed\n
@@ -51,6 +53,7 @@ const FileInputInfo: React.FC = () => {
           </td>
           <td>false</td>
         </tr>
+        </tbody>
       </table>
     </div>
   )

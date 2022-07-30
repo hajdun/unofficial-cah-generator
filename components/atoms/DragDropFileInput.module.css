@@ -4,14 +4,6 @@
     display: 'flex';
 }
 
-.root:hover p:hover {
-    opacity: 1;
-}
-
-.root p {
-    opacity: 0.4;
-}
-
 .root:hover {
     opacity: 0.3;
 }
@@ -20,18 +12,9 @@
     pointer-events: 'none';
 }
 
-.iconText {
+.uploadArea {
     display: 'flex';
     justify-content: 'center';
     flex-direction: 'column';
     align-items: 'center';
-    position: 'absolute';
-}
-
-.hidden {
-    display: 'none';
-}
-
-.onDragOver p {
-    opacity: 1;
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Papa from 'papaparse'
 import { addCard } from '../../api/firebase'
-import DragDropFileInput from './DragDropFileInput'
+import DragDropFileInput from '../atoms/DragDropFileInput'
 import clsx from 'clsx'
 import './FileInput.module.css'
-import Button from './Button'
+import Button from '../atoms/Button'
 
 const FileInput = () => {
   // State to store parsed data
@@ -34,7 +34,15 @@ const FileInput = () => {
   }
 
   const changeHandler = (event) => {
-    setFile(event.target.files[0])
+    const files = event.target.files
+    if (files) { setFile(files[0]) }
+  }
+
+  const onDrop = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    const files = event.dataTransfer.files
+    if (files) { setFile(files[0]) }
   }
 
   const handleOnSubmit = (event) => {
@@ -67,47 +75,44 @@ const FileInput = () => {
   }
 
   return (
-        <div>
-            <div>
-            <h3>Upload file</h3>
-            </div>
-            <DragDropFileInput/>
+    <div>
+      <div>
+        <div>Upload file</div>
+      </div>
 
-            <form>
-                <input
-                    type={'file'}
-                    id={'csvFileInput'}
-                    accept={'.csv'}
-                    onChange={changeHandler}
-                />
-                <Button text="Preview" onClick={handleOnSubmit}></Button>
-            </form>
+      <form>
+        <DragDropFileInput onChange={changeHandler} onDrop={onDrop} accept=".csv" />
+       {file && <Button text="Preview cards" onClick={handleOnSubmit}></Button>}
+      </form>
 
-          <table className={clsx({ hideTable: values.length === 0 })}>
-                <thead>
-                    <th>Language</th>
-                    <th>Text</th>
-                    <th>Is question</th>
-                </thead>
-                <tbody>
-                    {values.map((value: string[], index) => {
-                      return (
-                            <tr key={index}>
-                                <td>
-                                    {language.map((rows, index) => {
-                                      return <td key={index}>{rows}</td>
-                                    })}
-                                </td>
-                                {value.map((val: string, i: number) => {
-                                  return <td key={i}>{val}</td>
-                                })}
-                            </tr>
-                      )
-                    })}
-                </tbody>
-            </table>
-            <Button text="Upload" onClick={uploadCards}></Button>
-        </div>
+      <table className={clsx({ hideTable: values.length === 0 })}>
+        <thead>
+          <tr>
+            <td>Language</td>
+            <td>Text</td>
+            <td>Is question</td>
+          </tr>
+
+        </thead>
+        <tbody>
+          {values.map((value: string[], index) => {
+            return (
+              <tr key={index}>
+                <td>
+                  {language.map((rows, index) => {
+                    return <td key={index}>{rows}</td>
+                  })}
+                </td>
+                {value.map((val: string, i: number) => {
+                  return <td key={i}>{val}</td>
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+      {file && <Button text="Upload cards" onClick={uploadCards}></Button>}
+    </div>
   )
 }
 

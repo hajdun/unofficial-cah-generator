@@ -2,25 +2,18 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import clsx from 'clsx'
 import classes from './DragDropFileInput.module.css'
+import UploadFile from '@mui/icons-material/UploadFile'
 
 export type IDragDropFileInput = {
-    imageButton?: boolean
     accept: string
     hoverLabel?: string
     dropLabel?: string
     width?: string
     height?: string
-    backgroundColor?: string
-    image?: {
-        url: string
-        imageStyle?: {
-            width?: string
-            height?: string
-        }
-    }
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
     onDrop: (event: React.DragEvent<HTMLElement>) => void
-}
+
+  }
 
 export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
   accept,
@@ -28,13 +21,13 @@ export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
   dropLabel = 'Drop file here',
   width = '600px',
   height = '100px',
-  backgroundColor = '#fff',
   onChange,
   onDrop
 }) => {
   const [labelText, setLabelText] = React.useState<string>(hoverLabel)
   const [isDragOver, setIsDragOver] = React.useState<boolean>(false)
   const [isMouseOver, setIsMouseOver] = React.useState<boolean>(false)
+
   const stopDefaults = (e: React.DragEvent) => {
     e.stopPropagation()
     e.preventDefault()
@@ -66,7 +59,9 @@ export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event)
+    if (event.target.files) {
+      onChange(event)
+    }
   }
 
   return (
@@ -77,6 +72,7 @@ export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
                 className={classes.hidden}
                 id="file-upload"
                 type="file"
+                style={{ display: 'none' }}
             />
 
             <label
@@ -84,24 +80,25 @@ export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
                 {...dragEvents}
                 className={clsx(classes.root, isDragOver && classes.onDragOver)}
             >
-                <Box
+                <div
                     width={width}
                     height={height}
-                    bgcolor={backgroundColor}
                     className={classes.noMouseEvent}
                 >
-                {(isDragOver || isMouseOver) && (
+                {(
                         <>
-                            <Box
+                            <div
                                 height={height}
                                 width={width}
-                                className={classes.iconText}
                             >
+                              <div className={classes.uploadArea}>
+                              <UploadFile />
                                <div>{labelText}</div>
-                            </Box>
+                               </div>
+                            </div>
                         </>
                 )}
-                </Box>
+                </div>
             </label>
         </>
   )
