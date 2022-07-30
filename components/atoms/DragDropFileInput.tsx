@@ -1,59 +1,27 @@
 import React from 'react'
-import Box from '@mui/material/Box'
-import clsx from 'clsx'
 import classes from './DragDropFileInput.module.css'
 import UploadFile from '@mui/icons-material/UploadFile'
+import { Grid } from '@mui/material'
 
 export type IDragDropFileInput = {
-    accept: string
-    hoverLabel?: string
-    dropLabel?: string
-    width?: string
-    height?: string
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-    onDrop: (event: React.DragEvent<HTMLElement>) => void
-
-  }
+  accept: string,
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onDrop: (event: React.DragEvent<HTMLElement>) => void
+}
 
 export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
   accept,
-  hoverLabel = 'Click or drag to upload file',
-  dropLabel = 'Drop file here',
-  width = '600px',
-  height = '100px',
   onChange,
   onDrop
 }) => {
-  const [labelText, setLabelText] = React.useState<string>(hoverLabel)
-  const [isDragOver, setIsDragOver] = React.useState<boolean>(false)
-  const [isMouseOver, setIsMouseOver] = React.useState<boolean>(false)
-
   const stopDefaults = (e: React.DragEvent) => {
     e.stopPropagation()
     e.preventDefault()
   }
   const dragEvents = {
-    onMouseEnter: () => {
-      setIsMouseOver(true)
-    },
-    onMouseLeave: () => {
-      setIsMouseOver(false)
-    },
-    onDragEnter: (e: React.DragEvent) => {
-      stopDefaults(e)
-      setIsDragOver(true)
-      setLabelText(dropLabel)
-    },
-    onDragLeave: (e: React.DragEvent) => {
-      stopDefaults(e)
-      setIsDragOver(false)
-      setLabelText(hoverLabel)
-    },
     onDragOver: stopDefaults,
     onDrop: (e: React.DragEvent<HTMLElement>) => {
       stopDefaults(e)
-      setLabelText(hoverLabel)
-      setIsDragOver(false)
       onDrop(e)
     }
   }
@@ -65,42 +33,44 @@ export const DragDropFileInput: React.FC<IDragDropFileInput> = ({
   }
 
   return (
-        <>
-            <input
-                onChange={handleChange}
-                accept={accept}
-                className={classes.hidden}
-                id="file-upload"
-                type="file"
-                style={{ display: 'none' }}
-            />
+    <div>
+      <input
+        onChange={handleChange}
+        accept={accept}
+        className={classes.hidden}
+        id="file-upload"
+        type="file"
+        style={{ display: 'none' }}
+      />
 
-            <label
-                htmlFor="file-upload"
-                {...dragEvents}
-                className={clsx(classes.root, isDragOver && classes.onDragOver)}
+      <label
+        htmlFor="file-upload"
+        {...dragEvents}
+      >
+        <div className={classes.noMouseEvent}>
+          {(
+            <Grid
+              className={classes.root}
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              minWidth={400}
+              minHeight={300}
             >
-                <div
-                    width={width}
-                    height={height}
-                    className={classes.noMouseEvent}
-                >
-                {(
-                        <>
-                            <div
-                                height={height}
-                                width={width}
-                            >
-                              <div className={classes.uploadArea}>
-                              <UploadFile />
-                               <div>{labelText}</div>
-                               </div>
-                            </div>
-                        </>
-                )}
+              <Grid item xs={3}>
+                <div className={classes.uploadArea}>
+                  <div>
+                    <UploadFile /></div>
+                  <div>Click or drag to upload file</div>
                 </div>
-            </label>
-        </>
+              </Grid>
+            </Grid>
+          )}
+        </div>
+      </label>
+    </div>
   )
 }
 

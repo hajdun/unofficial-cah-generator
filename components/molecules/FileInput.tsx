@@ -7,9 +7,6 @@ import './FileInput.module.css'
 import Button from '../atoms/Button'
 
 const FileInput = () => {
-  // State to store parsed data
-  const [_parsedData, setParsedData] = useState([])
-
   // State to store table Column name
   const [language, setLanguage] = useState([])
 
@@ -21,7 +18,7 @@ const FileInput = () => {
     const cardArray = values.map(val => {
       return {
         text: val[0],
-        isQuestion: val[1] as boolean,
+        isQuestion: val[1],
         language: language[0],
         isFunny: true
       }
@@ -33,19 +30,19 @@ const FileInput = () => {
     }
   }
 
-  const changeHandler = (event) => {
-    const files = event.target.files
-    if (files) { setFile(files[0]) }
+  const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files[0]
+    if (file) { setFile(file) }
   }
 
-  const onDrop = (event) => {
+  const onDrop = (event: React.DragEvent<HTMLElement>) => {
     event.preventDefault()
     event.stopPropagation()
-    const files = event.dataTransfer.files
-    if (files) { setFile(files[0]) }
+    const file = event.dataTransfer.files[0]
+    if (file) { setFile(file) }
   }
 
-  const handleOnSubmit = (event) => {
+  const handleOnSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     // Passing file data (event.target.files[0]) to parse using Papa.parse
     Papa.parse(file, {
@@ -62,9 +59,6 @@ const FileInput = () => {
           valuesArray.push(Object.values(d))
         })
 
-        // Parsed Data Response in array format
-        setParsedData(results.data)
-
         // Filtered Column Names
         setLanguage(rowsArray[0])
 
@@ -77,7 +71,7 @@ const FileInput = () => {
   return (
     <div>
       <div>
-        <div>Upload file</div>
+        <h3>Upload file</h3>
       </div>
 
       <form>

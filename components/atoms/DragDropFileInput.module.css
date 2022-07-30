@@ -1,7 +1,9 @@
 .root {
     cursor: 'pointer';
-    text-align: 'center';
-    display: 'flex';
+    color: gray;
+    font-weight: bold;
+    height: 300px;
+    width: 400px;
 }
 
 .root:hover {
@@ -9,12 +11,17 @@
 }
 
 .noMouseEvent {
+    border: 3px dashed gray;
     pointer-events: 'none';
 }
 
-.uploadArea {
-    display: 'flex';
-    justify-content: 'center';
-    flex-direction: 'column';
-    align-items: 'center';
+.noMouseEvent:hover {
+    border: 3px dashed rgb(176, 176, 176);
+}
+
+.uploadArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
