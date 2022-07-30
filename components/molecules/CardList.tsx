@@ -9,23 +9,23 @@ import styles from './CardList.module.css'
 interface ICardList {
   isEdit: boolean,
   cards: ICard[],
-  setCards: () => void,
-  isUnfunnyHidden: boolean,
+  setCards?: () => void,
+  isUnfunnyHidden?: boolean,
 }
 
 const CardList: React.FC<ICardList> = ({
   isEdit,
   cards,
   setCards,
-  isUnfunnyHidden
+  isUnfunnyHidden = false
 }) => {
   useEffect(() => {
-    if (!cards || cards.length <= 0) {
+    if ((!cards || cards.length <= 0) && typeof setCards === 'function') {
       getCards().then((cardList) => {
         setCards(cardList)
       })
     }
-  }, [])
+  }, [cards])
 
   return (
       <div className={styles.cardList}>

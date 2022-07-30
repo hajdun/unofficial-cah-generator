@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import Papa from 'papaparse'
 import { addCard } from '../../api/firebase'
 import DragDropFileInput from '../atoms/DragDropFileInput'
-import clsx from 'clsx'
 import './FileInput.module.css'
 import Button from '../atoms/Button'
+import CardList from './CardList'
 
 const FileInput = () => {
   // State to store table Column name
@@ -30,7 +30,7 @@ const FileInput = () => {
     }
   }
 
-  const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files[0]
     if (file) { setFile(file) }
   }
@@ -76,35 +76,21 @@ const FileInput = () => {
 
       <form>
         <DragDropFileInput onChange={changeHandler} onDrop={onDrop} accept=".csv" />
-       {file && <Button text="Preview cards" onClick={handleOnSubmit}></Button>}
+        {file && <Button text="Preview cards" onClick={handleOnSubmit}></Button>}
       </form>
 
-      <table className={clsx({ hideTable: values.length === 0 })}>
-        <thead>
-          <tr>
-            <td>Language</td>
-            <td>Text</td>
-            <td>Is question</td>
-          </tr>
+<div>
+Language: {language[0]}
+</div>
+      <CardList cards={values.map((value: string[]) => {
+        const text = value[0]
+        const isQuestion = value[1]
+        const currentLanguage = language[0]
+        const isFunny = true
 
-        </thead>
-        <tbody>
-          {values.map((value: string[], index) => {
-            return (
-              <tr key={index}>
-                <td>
-                  {language.map((rows, index) => {
-                    return <td key={index}>{rows}</td>
-                  })}
-                </td>
-                {value.map((val: string, i: number) => {
-                  return <td key={i}>{val}</td>
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+        return { text, isQuestion, language: currentLanguage, isFunny }
+      })
+      } isEdit={false}></CardList>
       {file && <Button text="Upload cards" onClick={uploadCards}></Button>}
     </div>
   )
