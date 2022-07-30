@@ -9,11 +9,13 @@ import CardList from './CardList'
 const FileInput = () => {
   // State to store table Column name
   const [language, setLanguage] = useState([])
+  const [previewClicked, setPreviewClicked] = useState(false)
 
   // State to store the values
   const [values, setValues] = useState([])
   const [file, setFile] = useState(null)
 
+  // TODO: save values converted when parsed
   const uploadCards = () => {
     const cardArray = values.map(val => {
       return {
@@ -43,6 +45,7 @@ const FileInput = () => {
   }
 
   const handleOnSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setPreviewClicked(true)
     event.preventDefault()
     // Passing file data (event.target.files[0]) to parse using Papa.parse
     Papa.parse(file, {
@@ -71,17 +74,18 @@ const FileInput = () => {
   return (
     <div>
       <div>
-        <h3>Upload file</h3>
+        <h3>Upload multiple cards from file</h3>
       </div>
 
       <form>
-        <DragDropFileInput onChange={changeHandler} onDrop={onDrop} accept=".csv" />
-        {file && <Button text="Preview cards" onClick={handleOnSubmit}></Button>}
+        {!file && <DragDropFileInput onChange={changeHandler} onDrop={onDrop} accept=".csv" />}
+        {file && !previewClicked && <Button text="Preview cards before upload" onClick={handleOnSubmit}></Button>}
+        {file && previewClicked && <Button text="Upload cards" onClick={uploadCards}></Button>}
       </form>
 
-<div>
-Language: {language[0]}
-</div>
+      <div>
+        {file && previewClicked && `Language: ${language[0]}`}
+      </div>
       <CardList cards={values.map((value: string[]) => {
         const text = value[0]
         const isQuestion = value[1]
@@ -90,8 +94,8 @@ Language: {language[0]}
 
         return { text, isQuestion, language: currentLanguage, isFunny }
       })
-      } isEdit={false}></CardList>
-      {file && <Button text="Upload cards" onClick={uploadCards}></Button>}
+      }
+      isEdit={false}/>
     </div>
   )
 }
