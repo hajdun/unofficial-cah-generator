@@ -1,7 +1,7 @@
 .container{
     display: flex;
-    flex-direction: column;
     width: 240px;
+    flex-direction: column;
 }
 
 .card {
@@ -51,22 +51,25 @@
 @media print { 
     .container{
         margin: 0;
-        width: 38mm;
-        height: 38mm;
+        width: 45mm;
+        height: 49mm;
     }
     .card {
         margin: 0;
-        width: 38mm;
-        height: 38mm;
-        font-size: 12px;
+        width: 45mm;
+        height: 49mm;
+        font-size: 16px;
+        padding-right: 5px;
     }
 
     .question {
         -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
         color-adjust: exact !important;                 /*Firefox*/
+        border: 1px solid white;
     }
 
     .logoContainer{
         font-size: 8px;
+        border: none;
     }
 }

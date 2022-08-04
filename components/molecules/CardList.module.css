@@ -26,6 +26,13 @@
 
 @media screen and (max-width: 800px) {
     .cardListActions {
+        flex-shrink: 0;
         flex-direction: column;
     }  
+
+    .printPageBreak {
+        clear: both;
+        page-break-before: always;
+        page-break-after: always;
+    }
 }

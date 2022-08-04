@@ -7,10 +7,11 @@ import Logo from './Logo'
 
 interface ICardProps {
   card: ICard,
-  isEdit?: boolean
+  isEdit?: boolean,
+  classes?: string
 }
 
-const Card: React.FC<ICardProps> = ({ card, isEdit = false }) => {
+const Card: React.FC<ICardProps> = ({ card, isEdit = false, classes }) => {
   const cardRef = React.createRef<HTMLDivElement>()
 
   const [extraStyle, setExtraStyle] = useState(false)
@@ -30,7 +31,7 @@ const Card: React.FC<ICardProps> = ({ card, isEdit = false }) => {
     if (id) { deleteCard(id) }
   }
 
-  return <div className={styles.container}>
+  return <div className={`${styles.container} ${classes}`}>
     <div
       ref={cardRef}
       className={`${styles.card} ${card.isQuestion === 'true' ? styles.question : styles.answer} ${extraStyle ? styles.extraStyle : ''}`}

@@ -27,11 +27,14 @@ const CardList: React.FC<ICardList> = ({
     }
   }, [cards])
 
+  // 20th card to get a class for print page break
   return (
       <div className={styles.cardList}>
-        {cards.map(card => {
+        {cards.map((card, index) => {
           if (isUnfunnyHidden && card.isFunny === false) return ''
-          return <Card key={uuidv4()} card={card} isEdit={isEdit} />
+          const PRINT_PAGE_BREAK_INDEX = 21
+          const printPageBreakClass = index % PRINT_PAGE_BREAK_INDEX === 0 ? 'printPageBreak' : ''
+          return <Card key={uuidv4()} card={card} isEdit={isEdit} classes={printPageBreakClass} />
         })}
       </div>
   )

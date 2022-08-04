@@ -1,11 +1,14 @@
 .container {
-  margin: 25mm 25mm 25mm 25mm;
 }
 
 @media print {  
     .container {
-        display: inline;
-        margin-bottom: 25mm;
-        margin-top: 15mm;
+        margin-bottom: 41,5mm;
+        display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;      /* TWEENER - IE 10 */
+        display: -webkit-flex;     /* NEW - Chrome */
+        display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        flex-wrap: wrap;
     }
   }
