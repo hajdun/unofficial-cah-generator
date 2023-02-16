@@ -11,7 +11,7 @@ import styles from './QuestionOrAnswerForm.module.css'
 const QuestionorAnswerForm: React.FC = () => {
   const [textValue, setTextValue] = useState('')
   const [isQuestion, setIsQuestion] = useState(false)
-  const [card, setCard] = useState<ICard>({})
+  const [card, setCard] = useState<ICard | null>(null)
 
   // TODO language
   useEffect(() => {

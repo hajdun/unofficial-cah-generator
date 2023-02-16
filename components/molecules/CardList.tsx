@@ -9,7 +9,7 @@ import styles from './CardList.module.css'
 interface ICardList {
   isEdit: boolean,
   cards: ICard[],
-  setCards?: () => void,
+  setCards?: (args:any[]) => void,
   isUnfunnyHidden?: boolean,
 }
 
@@ -25,7 +25,7 @@ const CardList: React.FC<ICardList> = ({
         setCards(cardList)
       })
     }
-  }, [cards])
+  }, [])
 
   // 20th card to get a class for print page break
   return (

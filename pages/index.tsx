@@ -17,13 +17,6 @@ const Home: NextPage = () => {
     setCurrentTabIndex(newValue)
   }
 
-  const tabProps = (index: number) => {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`
-    }
-  }
-
   return (
     <div className={styles.container}>
       <Head>
@@ -44,8 +37,8 @@ const Home: NextPage = () => {
         <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={currentTabIndex} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Upload cards from file" {...tabProps(0)} variant={'scrollable'} />
-              <Tab label="Add cards in form" {...tabProps(1)} />
+              <Tab label="Upload cards from file" value={0} />
+              <Tab label="Add cards in form" value={1} />
             </Tabs>
           </Box>
           <TabPanel value={currentTabIndex} index={0}>

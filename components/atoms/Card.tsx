@@ -6,7 +6,7 @@ import { deleteCard } from '../../api/firebase'
 import Logo from './Logo'
 
 interface ICardProps {
-  card: ICard,
+  card: ICard | null,
   isEdit?: boolean,
   classes?: string
 }
@@ -24,11 +24,15 @@ const Card: React.FC<ICardProps> = ({ card, isEdit = false, classes }) => {
 
       setExtraStyle(hasOverflowingChildren)
     }
-  }, [])
+  }, [cardRef])
 
   const deleteCardClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.getAttribute('id')
     if (id) { deleteCard(id) }
+  }
+
+  if (!card) {
+    return <></>
   }
 
   return <div className={`${styles.container} ${classes}`}>
@@ -39,9 +43,9 @@ const Card: React.FC<ICardProps> = ({ card, isEdit = false, classes }) => {
       <div>
         {card.text}</div>
       <div
-       className={`${styles.logoContainer} ${card.isQuestion === 'true' ? styles.question : styles.answer}`}
-     >
-        <Logo width='15px' height='15px' color={'currentColor'}/>
+        className={`${styles.logoContainer} ${card.isQuestion === 'true' ? styles.question : styles.answer}`}
+      >
+        <Logo width='15px' height='15px' color={'currentColor'} />
         Cards Against Humanity
       </div>
     </div>

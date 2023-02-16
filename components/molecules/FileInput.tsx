@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Papa from 'papaparse'
+import { parse } from 'papaparse'
 import { addCard } from '../../api/firebase'
 import DragDropFileInput from '../atoms/DragDropFileInput'
 import './FileInput.module.css'
@@ -12,8 +12,8 @@ const FileInput = () => {
   const [previewClicked, setPreviewClicked] = useState(false)
 
   // State to store the values
-  const [values, setValues] = useState([])
-  const [file, setFile] = useState(null)
+  const [values, setValues] = useState<any[]>([])
+  const [file, setFile] = useState<File>()
 
   // TODO: save values converted when parsed
   const uploadCards = () => {
@@ -33,8 +33,10 @@ const FileInput = () => {
   }
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files[0]
-    if (file) { setFile(file) }
+    if (event.target && event.target.files) {
+      const file = event.target.files[0]
+      if (file) { setFile(file) }
+    }
   }
 
   const onDrop = (event: React.DragEvent<HTMLElement>) => {
@@ -48,18 +50,18 @@ const FileInput = () => {
     setPreviewClicked(true)
     event.preventDefault()
     // Passing file data (event.target.files[0]) to parse using Papa.parse
-    Papa.parse(file, {
+    parse(file as File, {
       header: true,
       skipEmptyLines: true,
       encoding: 'UTF-8',
       complete: (results) => {
-        const rowsArray = []
-        const valuesArray = []
+        const rowsArray: any[] = []
+        const valuesArray: any[] = []
 
         // Iterating data to get column name and their values
-        results.data.map((d) => {
-          rowsArray.push(Object.keys(d))
-          valuesArray.push(Object.values(d))
+        results.data.forEach((d) => {
+          rowsArray.push(Object.keys(d as any))
+          valuesArray.push(Object.values(d as any))
         })
 
         // Filtered Column Names
@@ -95,7 +97,7 @@ const FileInput = () => {
         return { text, isQuestion, language: currentLanguage, isFunny }
       })
       }
-      isEdit={false}/>
+        isEdit={false} />
     </div>
   )
 }
