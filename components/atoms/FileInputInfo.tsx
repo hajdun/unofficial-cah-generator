@@ -47,7 +47,7 @@ const FileInputInfo: React.FC = () => {
             CARD TEXT, false\n
             (second column is always false for answers)`}>
               <div>
-                {'Gay lobby'}
+                {'Five drunk punks'}
               </div>
             </Tooltip>
           </td>
