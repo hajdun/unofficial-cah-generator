@@ -18,6 +18,20 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+
+### Settings
+
+```
+//.env, all are for firebase config
+NEXT_PUBLIC_API_KEY="something"
+NEXT_PUBLIC_AUTH_DOMAIN="something"
+NEXT_PUBLIC_PROJECT_ID="something"
+NEXT_PUBLIC_STORAGE_BUCKET="something"
+NEXT_PUBLIC_MESSAGE_SENDER_ID="something"
+NEXT_PUBLIC_APP_ID="something"
+NEXT_PUBLIC_MEASUREMENT_ID="something"
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
